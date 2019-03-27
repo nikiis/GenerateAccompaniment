@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MusicActivity"
+    android:layout_gravity="center"
+    android:layout_centerVertical="true"
+    android:layout_centerHorizontal="true">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="44dp"
+        android:paddingTop="10dp"
+        android:text="Generate Accompaniment"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.369">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Choose Synthesizer"
+                android:textAlignment="textEnd"
+                android:textSize="18sp"
+                android:textAllCaps="true"/>
+
+            <Spinner
+                android:id="@+id/spinSynth"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.353" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="255dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Number of Bars:"
+                android:textAlignment="textEnd"
+                android:textAllCaps="true"
+                android:textSize="18sp" />
+
+            <Button
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:text="@string/minus"
+                android:onClick="decrementBar"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:id="@+id/numBars"/>
+
+            <Button
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:text="@string/add"
+                android:onClick="incrementBar"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/chord1"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:onClick="setChord"/>
+
+            <Button
+                android:id="@+id/chord2"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:onClick="setChord"/>
+
+            <Button
+                android:id="@+id/chord3"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:onClick="setChord"/>
+
+            <Button
+                android:id="@+id/chord4"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:onClick="setChord"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/chord5"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:onClick="setChord"/>
+
+            <Button
+                android:id="@+id/chord6"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:onClick="setChord"/>
+
+            <Button
+                android:id="@+id/chord7"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:onClick="setChord"/>
+
+            <Button
+                android:id="@+id/chord8"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:onClick="setChord"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Choose a Style:"
+                android:textAllCaps="true"
+                android:textSize="18sp" />
+
+            <Spinner
+                android:id="@+id/stylesList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </Spinner>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tempo:"
+                android:textAllCaps="true"
+                android:textSize="18sp" />
+
+            <Button
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:onClick="incrementTempo"
+                android:text="@string/minus" />
+
+            <TextView
+                android:id="@+id/tempoText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="90"
+                android:textAlignment="center"
+                android:textSize="18sp" />
+
+            <Button
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:onClick="decrementTempo"
+                android:text="@string/add" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="5dp"
+                android:text="Select key:"
+                android:textAllCaps="true"
+                android:textSize="18sp" />
+
+            <Spinner
+                android:id="@+id/keysList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+            </Spinner>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/playButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="8dp"
+        android:text="play"
+        android:textAllCaps="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.612"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.287"
+        android:onClick="onPlay"/>
+
+
+</android.support.constraint.ConstraintLayout>

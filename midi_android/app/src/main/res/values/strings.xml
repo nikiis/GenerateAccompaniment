@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MidiJfugue</string>
+    <string name="add">+</string>
+    <string name="minus">-</string>
+    <string name="flat">\U266D</string>
+    <string name="sharp">\U266F</string>
+    <string name="chord1">chord1</string>
+    <string name="bar_no">8</string>
+</resources>
