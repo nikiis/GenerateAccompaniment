@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import org.jfugue.pattern.Pattern;
 import org.jfugue.rhythm.Rhythm;
+import org.jfugue.theory.Chord;
 import org.jfugue.theory.ChordProgression;
 
 import java.util.ArrayList;
@@ -29,19 +30,27 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
 
     public static final int MIN_NUM_BARS = 0;
     public static final int MAX_NUM_BARS = 7;
+    public static final int DEFAULT_TEMPO = 120;
+    public static final int MAX_TEMPO = 200;
+    public static final int MIN_TEMPO = 60;
+
     private ArrayAdapter<String> spinnerSynthAdapter;
     MediaMidiSystem mediaMidiSystem;
     ArrayList<Integer> button_ids = new ArrayList<Integer>(
             Arrays.asList(R.id.chord1,R.id.chord2,R.id.chord3,R.id.chord4,R.id.chord5,
                     R.id.chord6,R.id.chord7,R.id.chord8));
     public int numOfBars = 7; //7 because we start from 0
+    public int currentTempo = DEFAULT_TEMPO;
 
+    public ArrayList<Chord> chords = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_music);
         setSpinnerSynth();
+
+        setDefaultChords();
     }
 
     @Override
@@ -81,15 +90,28 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
             remButton.setVisibility(view.INVISIBLE);
             Log.e("id removed", "" + remID);
 //            Log.e("arraylist", ""+button_ids.get(numOfBars));
+            chords.remove(numOfBars);
             numOfBars--;
-
             TextView textBar = findViewById(R.id.numBars);
             textBar.setText(""+(numOfBars+1));
+            Log.e("chords left: ", chords.toString());
 
         }
         else{
             Toast.makeText(this, "Can't remove any more bars", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void setDefaultChords(){
+        //TODO
+        Chord defaultChord = new Chord("CMaj");
+        for(int i = 0; i<=numOfBars; i++){
+            chords.add(defaultChord);
+            Button b = findViewById(button_ids.get(i));
+            b.setText("CMaj");
+        }
+
+        Log.e("defaultChords", chords.toString());
     }
 
     public void incrementBar(View view){
@@ -99,7 +121,6 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
             Button addButton = findViewById(addID);
             addButton.setVisibility(view.VISIBLE);
             numOfBars++;
-
             TextView textBar = findViewById(R.id.numBars);
             textBar.setText(""+(numOfBars+1));
         }
@@ -110,16 +131,33 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
 
     public void incrementTempo(View view){
         //TODO
+        if(currentTempo < MAX_TEMPO){
+            currentTempo++;
+            TextView tempoView = findViewById(R.id.tempoText);
+            tempoView.setText(""+currentTempo);
+        }
+        else{
+            Toast.makeText(this,"Your tempo can't be over the maximum of 200", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     public void decrementTempo(View view){
         //TODO
+        if(currentTempo > MIN_TEMPO){
+            currentTempo--;
+            TextView tempoView = findViewById(R.id.tempoText);
+            tempoView.setText(""+currentTempo);
+        }
+        else{
+            Toast.makeText(this,"Your tempo can't be under the minimum of 60", Toast.LENGTH_SHORT).show();
+        }
     }
 
 
 
 
-    public void setSpinnerSynth(){
+    private void setSpinnerSynth(){
         Spinner spinnerSynth = findViewById(R.id.spinSynth);
         spinnerSynth.setOnItemSelectedListener(this);
         spinnerSynthAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
@@ -127,6 +165,10 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
         spinnerSynthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerSynth.setAdapter(spinnerSynthAdapter);
 
+    }
+
+    private void setStylesList(){
+        //TODO
     }
 
     @Override
@@ -190,8 +232,8 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
                 "G", "G#", "Gb",
                 "A", "A#", "Ab",
                 "B", "B#", "Bb"};
-        final String[] chordTypes = {"Major", "Minor", "Major 7th", "Minor 7th", "Dominant 7th",
-                "Diminished", "Augmented", "sus2", "sus4"};
+        final String[] chordTypes = {"Maj", "Min", "Maj7", "Min7", "Dom7",
+                "Dim", "Aug", "sus2", "sus4"};
 
         AlertDialog.Builder builder = new AlertDialog.Builder(MusicActivity.this);
         View view = getLayoutInflater().inflate(R.layout.view_chords, null);
@@ -217,11 +259,14 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
         enterChord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Chord chord = new Chord(array_chords[picker_chords.getValue()], array_types[picker_type.getValue()]);
-//                chords[currChord] = chord;
-//                Log.d("current chord", "chord " + chords.get(curr_chord).getChord() + curr_chord);
-                button.setText(chordNames[picker_chords.getValue()] + chordTypes[picker_type.getValue()]);
+                String chord = chordNames[picker_chords.getValue()] + chordTypes[picker_type.getValue()];
+                Chord c = new Chord(chord);
+                //TODO: NOT MEANT TO ADD WE NEED TO REPLACE THE PREVIOUS ONE IF THAT MAKES SENSE?
+                chords.add(c); //TODO THIS LINE IS WRONG PLZ FIX IT
+                button.setText(chord);
                 dialog.dismiss();
+
+                Log.e("chord", chords.toString());
             }
         });
 

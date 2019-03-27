@@ -224,21 +224,21 @@
             <Button
                 android:layout_width="45dp"
                 android:layout_height="45dp"
-                android:onClick="incrementTempo"
+                android:onClick="decrementTempo"
                 android:text="@string/minus" />
 
             <TextView
                 android:id="@+id/tempoText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="90"
+                android:text="120"
                 android:textAlignment="center"
                 android:textSize="18sp" />
 
             <Button
                 android:layout_width="45dp"
                 android:layout_height="45dp"
-                android:onClick="decrementTempo"
+                android:onClick="incrementTempo"
                 android:text="@string/add" />
 
             <TextView
