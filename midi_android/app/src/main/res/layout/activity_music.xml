@@ -15,7 +15,7 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="456dp"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -39,8 +39,8 @@
                 android:layout_height="wrap_content"
                 android:text="Choose MIDI Device:"
                 android:textAlignment="textEnd"
-                android:textSize="18sp"
-                android:textColor="#000000" />
+                android:textAllCaps="true"
+                android:textSize="18sp" />
 
             <Spinner
                 android:id="@+id/spinSynth"
@@ -56,36 +56,40 @@
         <LinearLayout
             android:layout_width="255dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingTop="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Number of Bars:"
                 android:textAlignment="textEnd"
-                android:textSize="18sp"
-                android:textColor="#000000"/>
+                android:textAllCaps="true"
+                android:textSize="18sp" />
 
-            <Button
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:text="@string/minus"
-                android:onClick="decrementBar"/>
-
-            <TextView
+            <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/decrease"
+                android:onClick="decrementBar" />
+
+            <TextView
+                android:id="@+id/numBars"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:text="8"
                 android:textAlignment="center"
-                android:textSize="18sp"
-                android:id="@+id/numBars"
-                android:textColor="#000000"/>
+                android:textSize="18sp" />
 
-            <Button
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:text="@string/add"
-                android:onClick="incrementBar"/>
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="incrementBar"
+                android:background="@drawable/plus" />
+
         </LinearLayout>
 
 
@@ -93,42 +97,51 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingTop="25dp">
 
             <Button
                 android:id="@+id/chord1"
                 style="@style/Widget.AppCompat.Button"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
-                android:onClick="setChord"
+                android:layout_marginEnd="2dp"
                 android:background="@drawable/mybutton"
-                android:textColor="#ffffff"/>
+                android:onClick="setChord"
+                android:text="+"
+                android:textColor="#ffffff" />
+
             <Button
                 android:id="@+id/chord2"
                 style="@style/Widget.AppCompat.Button"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
-                android:onClick="setChord"
+                android:layout_marginEnd="2dp"
                 android:background="@drawable/mybutton"
-                android:textColor="#ffffff"/>
+                android:onClick="setChord"
+                android:text="+"
+                android:textColor="#ffffff" />
 
             <Button
                 android:id="@+id/chord3"
                 style="@style/Widget.AppCompat.Button"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
-                android:onClick="setChord"
+                android:layout_marginEnd="2dp"
                 android:background="@drawable/mybutton"
-                android:textColor="#ffffff"/>
+                android:onClick="setChord"
+                android:text="+"
+                android:textColor="#ffffff" />
 
             <Button
                 android:id="@+id/chord4"
                 style="@style/Widget.AppCompat.Button"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
-                android:onClick="setChord"
                 android:background="@drawable/mybutton"
-                android:textColor="#ffffff"/>
+                android:onClick="setChord"
+                android:text="+"
+                android:textColor="#ffffff" />
 
 
         </LinearLayout>
@@ -145,36 +158,43 @@
                 style="@style/Widget.AppCompat.Button"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
-                android:onClick="setChord"
+                android:layout_marginEnd="2dp"
                 android:background="@drawable/mybutton"
-                android:textColor="#ffffff"/>
+                android:onClick="setChord"
+                android:text="+"
+                android:textColor="#ffffff" />
 
             <Button
                 android:id="@+id/chord6"
                 style="@style/Widget.AppCompat.Button"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
-                android:onClick="setChord"
+                android:layout_marginEnd="2dp"
                 android:background="@drawable/mybutton"
-                android:textColor="#ffffff"/>
+                android:onClick="setChord"
+                android:text="+"
+                android:textColor="#ffffff" />
 
             <Button
                 android:id="@+id/chord7"
                 style="@style/Widget.AppCompat.Button"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
-                android:onClick="setChord"
+                android:layout_marginEnd="2dp"
                 android:background="@drawable/mybutton"
-                android:textColor="#ffffff"/>
+                android:onClick="setChord"
+                android:text="+"
+                android:textColor="#ffffff" />
 
             <Button
                 android:id="@+id/chord8"
                 style="@style/Widget.AppCompat.Button"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
-                android:onClick="setChord"
                 android:background="@drawable/mybutton"
-                android:textColor="#ffffff"/>
+                android:onClick="setChord"
+                android:text="+"
+                android:textColor="#ffffff" />
 
 
         </LinearLayout>
@@ -182,7 +202,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="25dp"
             android:orientation="horizontal">
 
             <TextView
@@ -204,7 +224,8 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp">
 
 
         </RelativeLayout>
@@ -222,11 +243,12 @@
                 android:textAllCaps="true"
                 android:textSize="18sp" />
 
-            <Button
-                android:layout_width="45dp"
-                android:layout_height="45dp"
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:onClick="decrementTempo"
-                android:text="@string/minus" />
+                android:background="@drawable/decrease"
+                android:layout_marginLeft="10dp"/>
 
             <TextView
                 android:id="@+id/tempoText"
@@ -234,13 +256,15 @@
                 android:layout_height="wrap_content"
                 android:text="120"
                 android:textAlignment="center"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"/>
 
-            <Button
-                android:layout_width="45dp"
-                android:layout_height="45dp"
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:onClick="incrementTempo"
-                android:text="@string/add" />
+                android:background="@drawable/plus"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -265,22 +289,54 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/playButton"
+    <!--<Button-->
+        <!--android:id="@+id/playButton"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:layout_marginEnd="60dp"-->
+        <!--android:layout_marginBottom="8dp"-->
+        <!--android:text="play"-->
+        <!--android:textAllCaps="true"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintHorizontal_bias="0.612"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/linearLayout"-->
+        <!--app:layout_constraintVertical_bias="0.287"-->
+        <!--android:onClick="onPlay"/>-->
+
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="60dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="play"
-        android:textAllCaps="true"
+        android:background="@drawable/play5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.612"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.287"
+        app:layout_constraintVertical_bias="0.747"
+        android:id="@+id/playButton"
         android:onClick="onPlay"/>
 
-
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/stop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.616"
+        android:visibility="invisible"
+        android:onClick="onClickStop"
+        android:id="@+id/stopButton"/>
 </android.support.constraint.ConstraintLayout>
