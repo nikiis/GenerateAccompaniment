@@ -59,9 +59,7 @@ public class MediaMidiSystem implements MidiManager.OnDeviceOpenedListener{
             @Override
             public void onDeviceRemoved(MidiDeviceInfo device) {
                 synchronized (deviceInfos){
-                    if (deviceInfos.contains(device)) {
-                        deviceInfos.remove(device);
-                    }
+                    deviceInfos.remove(device);
                 }
 
                 if (onDeviceConnectionChangedListener != null) {

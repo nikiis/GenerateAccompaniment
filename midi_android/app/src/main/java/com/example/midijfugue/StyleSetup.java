@@ -4,6 +4,8 @@ import android.util.SparseArray;
 
 import org.jfugue.theory.Chord;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class StyleSetup {
@@ -18,6 +20,10 @@ public class StyleSetup {
 
     public final static String[] STYLES = {"Simple", "Rock"};
 
+    public enum SupportedStyles {
+        SIMPLE,
+        ROCK
+    }
 
     private final int MAX_TEMPO = 200;
     private final int MIN_TEMPO = 60;
@@ -27,10 +33,10 @@ public class StyleSetup {
     private final int DEFAULT_TEMPO = 120;
     private final int DEFAULT_BARS = 8;
     private final String DEFAULT_KEY = KEYS[0];
-    private final String DEFAULT_STYLE = STYLES[0];
+    private final SupportedStyles DEFAULT_STYLE = SupportedStyles.SIMPLE;
 
     private int numberOfBars;
-    private String style;
+    private SupportedStyles style;
     private int tempo;
     private String key;
     private SparseArray<Chord> chords;
@@ -40,7 +46,7 @@ public class StyleSetup {
         this.style = DEFAULT_STYLE;
         this.tempo = DEFAULT_TEMPO;
         this.key = DEFAULT_KEY;
-        this.chords = new SparseArray<Chord>();
+        this.chords = new SparseArray<>();
     }
 
     public boolean isSetupCorrect(){
@@ -103,15 +109,20 @@ public class StyleSetup {
         this.key = key;
     }
 
-    public SparseArray<Chord> getChords() {
-        return chords;
+    public List<Chord> getChords() {
+        if (this.chords == null) return null;
+
+        List<Chord> chordsList = new ArrayList<>(numberOfBars);
+        for (int i = 0; i < this.chords.size(); i++)
+            chordsList.add(this.chords.valueAt(i));
+        return chordsList;
     }
 
-    public String getStyle() {
+    public SupportedStyles getStyle() {
         return style;
     }
 
-    public void setStyle(String style) {
+    public void setStyle(SupportedStyles style) {
         this.style = style;
     }
 

@@ -43,7 +43,7 @@
                 android:textSize="18sp" />
 
             <Spinner
-                android:id="@+id/spinSynth"
+                android:id="@+id/synthesizer_spinner"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -75,7 +75,7 @@
                 android:onClick="decrementBar" />
 
             <TextView
-                android:id="@+id/numBars"
+                android:id="@+id/bar_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -213,7 +213,7 @@
                 android:textSize="18sp" />
 
             <Spinner
-                android:id="@+id/stylesList"
+                android:id="@+id/styles_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -251,7 +251,7 @@
                 android:layout_marginLeft="10dp"/>
 
             <TextView
-                android:id="@+id/tempoText"
+                android:id="@+id/tempo_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="120"
@@ -320,7 +320,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.747"
-        android:id="@+id/playButton"
+        android:id="@+id/play_button"
         android:onClick="onPlay"/>
 
     <ImageButton
@@ -338,5 +338,5 @@
         app:layout_constraintVertical_bias="0.616"
         android:visibility="invisible"
         android:onClick="onClickStop"
-        android:id="@+id/stopButton"/>
+        android:id="@+id/stop_button"/>
 </android.support.constraint.ConstraintLayout>

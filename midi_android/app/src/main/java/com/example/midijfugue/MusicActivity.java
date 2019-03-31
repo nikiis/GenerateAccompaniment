@@ -1,12 +1,10 @@
 package com.example.midijfugue;
 
 import android.app.AlertDialog;
-import android.graphics.Paint;
 import android.media.midi.MidiDeviceInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.SparseArray;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,29 +15,23 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.jfugue.pattern.Pattern;
 import org.jfugue.theory.Chord;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import jp.kshoji.javax.sound.midi.Sequence;
-
 public class MusicActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener,
         MediaMidiSystem.OnDeviceConnectionChangedListener {
-
 
     private StyleSetup styleSetup;
 
     private ArrayAdapter<String> spinnerSynthAdapter;
 
     MediaMidiSystem mediaMidiSystem;
-    ArrayList<Integer> button_ids = new ArrayList<>(
+    ArrayList<Integer> buttonIds = new ArrayList<>(
             Arrays.asList(R.id.chord1,R.id.chord2,R.id.chord3,R.id.chord4,R.id.chord5,
                     R.id.chord6,R.id.chord7,R.id.chord8));
-
-    public SparseArray<Chord> chords = new SparseArray<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +40,6 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
         styleSetup = new StyleSetup();
         setSpinnerSynth();
         setStylesSpinner();
-
     }
 
     @Override
@@ -62,85 +53,81 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
 
     public void onPlay (View view) {
         Log.e("Button", "Pressed");
-        Log.i("style name", styleSetup.getStyle());
-        Log.i("tempo", "" +styleSetup.getTempo());
-        Log.i("bars", ""+styleSetup.getNumberOfBars());
-//        Sequence s = new MediaMidiPlayer().getSequence(pattern);
-        ImageButton playButton = findViewById(R.id.playButton);
-        ImageButton stopButton = findViewById(R.id.stopButton);
+        Log.i("style name", styleSetup.getStyle().name());
+        Log.i("tempo", styleSetup.getTempo() + "");
+        Log.i("bars", styleSetup.getNumberOfBars() + "");
+        ImageButton playButton = findViewById(R.id.play_button);
+        ImageButton stopButton = findViewById(R.id.stop_button);
 
-        playButton.setVisibility(view.INVISIBLE);
-        stopButton.setVisibility(view.VISIBLE);
+        playButton.setVisibility(View.INVISIBLE);
+        stopButton.setVisibility(View.VISIBLE);
 
-//        new MediaMidiPlayer().play(s);
-
+        BaseStyle style = StyleFactory.createStyle(styleSetup);
+        style.play();
     }
 
     public void onClickStop(View view){
-        ImageButton playButton = findViewById(R.id.playButton);
-        ImageButton stopButton = findViewById(R.id.stopButton);
+        ImageButton playButton = findViewById(R.id.play_button);
+        ImageButton stopButton = findViewById(R.id.stop_button);
 
-        playButton.setVisibility(view.VISIBLE);
-        stopButton.setVisibility(view.INVISIBLE);
+        playButton.setVisibility(View.VISIBLE);
+        stopButton.setVisibility(View.INVISIBLE);
     }
 
     public void setChord(View view){
-        int  currChord = button_ids.indexOf(view.getId());
+        int currChord = buttonIds.indexOf(view.getId());
         showChordDialogue((Button) view, currChord);
     }
 
     public void decrementBar(View view){
-//        Log.e("bars", ""+styleSetup.getNumberOfBars());
-
         if(!styleSetup.decrementBars()){
-            Toast.makeText(this, "Can't remove any more bars", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Should have at least one bar", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        Button remButton = findViewById(button_ids.get(styleSetup.getNumberOfBars()));
-        remButton.setVisibility(view.INVISIBLE);
+        Button button = findViewById(buttonIds.get(styleSetup.getNumberOfBars()));
+        button.setVisibility(View.INVISIBLE);
         Log.e("id removed", "" + styleSetup.getNumberOfBars());
-        remButton.setText("+");
-        TextView textBar = findViewById(R.id.numBars);
-        textBar.setText(""+styleSetup.getNumberOfBars());
-        Log.e("chords left: ", chords.toString());
-
+        button.setText("+");
+        TextView textBar = findViewById(R.id.bar_count);
+        textBar.setText(String.valueOf(styleSetup.getNumberOfBars()));
+        Log.e("chords left: ", styleSetup.getNumberOfBars() + "");
     }
 
     public void incrementBar(View view){
         if(!styleSetup.incrementBars()){
-            Toast.makeText(this, "Can't add any more bars", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Up to 8 bars supported only", Toast.LENGTH_SHORT).show();
             return;
         }
 
         Log.e("number of bars", ""+ styleSetup.getNumberOfBars());
-        Button addButton = findViewById(button_ids.get(styleSetup.getNumberOfBars() - 1));
-        addButton.setVisibility(view.VISIBLE);
-        TextView textBar = findViewById(R.id.numBars);
-        textBar.setText(""+styleSetup.getNumberOfBars());
+        Button addButton = findViewById(buttonIds.get(styleSetup.getNumberOfBars() - 1));
+        addButton.setVisibility(View.VISIBLE);
+        TextView textBar = findViewById(R.id.bar_count);
+        textBar.setText(String.valueOf(styleSetup.getNumberOfBars()));
     }
 
     public void incrementTempo(View view){
         if(!styleSetup.incrementTempo()){
-            Toast.makeText(this,"Your tempo can't be over the maximum of 200", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Maximum tempo is 200", Toast.LENGTH_SHORT).show();
             return;
         }
-        TextView tempoView = findViewById(R.id.tempoText);
-        tempoView.setText(""+styleSetup.getTempo());
+        TextView tempoView = findViewById(R.id.tempo_text);
+        tempoView.setText(String.valueOf(styleSetup.getTempo()));
     }
 
     public void decrementTempo(View view){
         if(!styleSetup.decrementTempo()){
-            Toast.makeText(this,"Your tempo can't be under the minimum of 60", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Minimum tempo is 60", Toast.LENGTH_SHORT).show();
             return;
         }
-        TextView tempoView = findViewById(R.id.tempoText);
-        tempoView.setText(""+styleSetup.getTempo());
+        TextView tempoView = findViewById(R.id.tempo_text);
+        tempoView.setText(String.valueOf(styleSetup.getTempo()));
     }
 
 
     private void setSpinnerSynth(){
-        Spinner spinnerSynth = findViewById(R.id.spinSynth);
+        Spinner spinnerSynth = findViewById(R.id.synthesizer_spinner);
         spinnerSynth.setOnItemSelectedListener(this);
         spinnerSynthAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
                 new ArrayList<String>());
@@ -162,15 +149,15 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        switch (view.getId()){
-            case R.id.spinSynth:
+        switch (adapterView.getId()){
+            case R.id.synthesizer_spinner:
                 if (mediaMidiSystem != null){
                     mediaMidiSystem.openDevice(i);
                     Log.e("selected", ""+ i);
                 }
                 break;
-            case R.id.stylesList:
-                styleSetup.setStyle(StyleSetup.STYLES[i]);
+            case R.id.styles_spinner:
+                styleSetup.setStyle(StyleSetup.SupportedStyles.values()[i]);
                 break;
         }
 
@@ -212,11 +199,10 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
     }
 
     private void setStylesSpinner(){
-
-        Spinner spinnerStyles = findViewById(R.id.stylesList);
+        Spinner spinnerStyles = findViewById(R.id.styles_spinner);
         spinnerStyles.setOnItemSelectedListener(this);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, styleSetup.STYLES);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, StyleSetup.STYLES);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerStyles.setAdapter(adapter);
     }
@@ -243,12 +229,12 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
 
         final NumberPicker picker_chords = dialog.findViewById(R.id.numpick_chords);
         picker_chords.setMinValue(0);
-        picker_chords.setMaxValue(20);
+        picker_chords.setMaxValue(chordNames.length - 1);
         picker_chords.setDisplayedValues(chordNames);
 
         final NumberPicker picker_type = dialog.findViewById(R.id.numpick_types);
         picker_type.setMinValue(0);
-        picker_type.setMaxValue(8);
+        picker_type.setMaxValue(chordTypes.length - 1);
         picker_type.setDisplayedValues(chordTypes);
 
         Button enterChord = dialog.findViewById(R.id.button_chords);
@@ -261,9 +247,6 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
                 styleSetup.setChord(currChord, c);
                 button.setText(chord);
                 dialog.dismiss();
-
-                Log.e("chord", chords.toString());
-//                Log.e("chord", chords.get(0).toString());
             }
         });
 

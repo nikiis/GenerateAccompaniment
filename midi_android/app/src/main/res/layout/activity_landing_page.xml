@@ -5,4 +5,49 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LandingPage"
-    android:background="@drawable/treble"/>
+    android:background="@drawable/homepagebackground">
+
+    <LinearLayout
+        android:layout_width="360dp"
+        android:layout_height="598dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.485"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.786"
+        android:gravity="center">
+
+        <ImageButton
+            android:layout_width="250dp"
+            android:layout_height="150dp"
+            android:background="@drawable/homeplaybutton"
+            android:layout_marginBottom="-30dp"
+            android:onClick="toMusicActivity"/>
+
+        <ImageButton
+            android:layout_width="250dp"
+            android:layout_height="150dp"
+            android:background="@drawable/hometutbutton"
+            android:layout_marginBottom="-30dp"
+            android:onClick="toTutorialActivity"/>
+
+        <ImageButton
+            android:layout_width="250dp"
+            android:layout_height="150dp"
+            android:background="@drawable/homeaboutbutton"
+            android:onClick="toAboutActivity"/>
+
+
+
+    </LinearLayout>
+
+
+
+
+</android.support.constraint.ConstraintLayout>
