@@ -87,9 +87,8 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
         remButton.setVisibility(view.INVISIBLE);
         Log.e("id removed", "" + styleSetup.getNumberOfBars());
         remButton.setText("");
-        styleSetup.decrementBars();
         TextView textBar = findViewById(R.id.numBars);
-        textBar.setText(styleSetup.getNumberOfBars() + 1);
+        textBar.setText(""+styleSetup.getNumberOfBars());
         Log.e("chords left: ", chords.toString());
 
     }
@@ -101,11 +100,10 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
         }
 
         Log.e("number of bars", ""+ styleSetup.getNumberOfBars());
-        styleSetup.incrementBars();
-        Button addButton = findViewById(button_ids.get(styleSetup.getNumberOfBars()));
+        Button addButton = findViewById(button_ids.get(styleSetup.getNumberOfBars() - 1));
         addButton.setVisibility(view.VISIBLE);
         TextView textBar = findViewById(R.id.numBars);
-        textBar.setText(styleSetup.getNumberOfBars());
+        textBar.setText(""+styleSetup.getNumberOfBars());
     }
 
     public void incrementTempo(View view){
@@ -114,7 +112,7 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
         }
         styleSetup.incrementTempo();
         TextView tempoView = findViewById(R.id.tempoText);
-        tempoView.setText(styleSetup.getTempo());
+        tempoView.setText(""+styleSetup.getTempo());
     }
 
     public void decrementTempo(View view){
@@ -123,7 +121,7 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
         }
         styleSetup.decrementTempo();
         TextView tempoView = findViewById(R.id.tempoText);
-        tempoView.setText(styleSetup.getTempo());
+        tempoView.setText(""+styleSetup.getTempo());
     }
 
 
