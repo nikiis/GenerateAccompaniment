@@ -32,7 +32,6 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
     private StyleSetup styleSetup;
 
     private ArrayAdapter<String> spinnerSynthAdapter;
-    private ArrayAdapter<String> spinnerStylesAdapter;
 
     MediaMidiSystem mediaMidiSystem;
     ArrayList<Integer> button_ids = new ArrayList<>(
@@ -110,7 +109,6 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
         if(!styleSetup.incrementTempo()){
             Toast.makeText(this,"Your tempo can't be over the maximum of 200", Toast.LENGTH_SHORT).show();
         }
-        styleSetup.incrementTempo();
         TextView tempoView = findViewById(R.id.tempoText);
         tempoView.setText(""+styleSetup.getTempo());
     }
@@ -119,7 +117,6 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
         if(!styleSetup.decrementTempo()){
             Toast.makeText(this,"Your tempo can't be under the minimum of 60", Toast.LENGTH_SHORT).show();
         }
-        styleSetup.decrementTempo();
         TextView tempoView = findViewById(R.id.tempoText);
         tempoView.setText(""+styleSetup.getTempo());
     }
