@@ -8,24 +8,8 @@
     tools:context=".MusicActivity"
     android:layout_gravity="center"
     android:layout_centerVertical="true"
-    android:layout_centerHorizontal="true">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="44dp"
-        android:paddingTop="10dp"
-        android:text="Generate Accompaniment"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:layout_centerHorizontal="true"
+    android:background="@drawable/mainpage_background">
 
 
     <LinearLayout
@@ -53,10 +37,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Choose Synthesizer"
+                android:text="Choose MIDI Device:"
                 android:textAlignment="textEnd"
                 android:textSize="18sp"
-                android:textAllCaps="true"/>
+                android:textColor="#000000" />
 
             <Spinner
                 android:id="@+id/spinSynth"
@@ -79,8 +63,8 @@
                 android:layout_height="wrap_content"
                 android:text="Number of Bars:"
                 android:textAlignment="textEnd"
-                android:textAllCaps="true"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textColor="#000000"/>
 
             <Button
                 android:layout_width="45dp"
@@ -94,7 +78,8 @@
                 android:text="8"
                 android:textAlignment="center"
                 android:textSize="18sp"
-                android:id="@+id/numBars"/>
+                android:id="@+id/numBars"
+                android:textColor="#000000"/>
 
             <Button
                 android:layout_width="45dp"
@@ -113,30 +98,37 @@
             <Button
                 android:id="@+id/chord1"
                 style="@style/Widget.AppCompat.Button"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:onClick="setChord"/>
-
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:onClick="setChord"
+                android:background="@drawable/mybutton"
+                android:textColor="#ffffff"/>
             <Button
                 android:id="@+id/chord2"
                 style="@style/Widget.AppCompat.Button"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:onClick="setChord"/>
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:onClick="setChord"
+                android:background="@drawable/mybutton"
+                android:textColor="#ffffff"/>
 
             <Button
                 android:id="@+id/chord3"
                 style="@style/Widget.AppCompat.Button"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:onClick="setChord"/>
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:onClick="setChord"
+                android:background="@drawable/mybutton"
+                android:textColor="#ffffff"/>
 
             <Button
                 android:id="@+id/chord4"
                 style="@style/Widget.AppCompat.Button"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:onClick="setChord"/>
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:onClick="setChord"
+                android:background="@drawable/mybutton"
+                android:textColor="#ffffff"/>
 
 
         </LinearLayout>
@@ -145,35 +137,44 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingTop="3dp">
 
             <Button
                 android:id="@+id/chord5"
                 style="@style/Widget.AppCompat.Button"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:onClick="setChord"/>
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:onClick="setChord"
+                android:background="@drawable/mybutton"
+                android:textColor="#ffffff"/>
 
             <Button
                 android:id="@+id/chord6"
                 style="@style/Widget.AppCompat.Button"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:onClick="setChord"/>
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:onClick="setChord"
+                android:background="@drawable/mybutton"
+                android:textColor="#ffffff"/>
 
             <Button
                 android:id="@+id/chord7"
                 style="@style/Widget.AppCompat.Button"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:onClick="setChord"/>
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:onClick="setChord"
+                android:background="@drawable/mybutton"
+                android:textColor="#ffffff"/>
 
             <Button
                 android:id="@+id/chord8"
                 style="@style/Widget.AppCompat.Button"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:onClick="setChord"/>
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:onClick="setChord"
+                android:background="@drawable/mybutton"
+                android:textColor="#ffffff"/>
 
 
         </LinearLayout>

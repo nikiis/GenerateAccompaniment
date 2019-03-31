@@ -5,6 +5,7 @@ import android.media.midi.MidiDeviceInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,9 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.jfugue.pattern.Pattern;
-import org.jfugue.rhythm.Rhythm;
 import org.jfugue.theory.Chord;
-import org.jfugue.theory.ChordProgression;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,22 +34,24 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
     public static final int MIN_TEMPO = 60;
 
     private ArrayAdapter<String> spinnerSynthAdapter;
+    private ArrayAdapter<String> spinnerStylesAdapter;
+
     MediaMidiSystem mediaMidiSystem;
-    ArrayList<Integer> button_ids = new ArrayList<Integer>(
+    ArrayList<Integer> button_ids = new ArrayList<>(
             Arrays.asList(R.id.chord1,R.id.chord2,R.id.chord3,R.id.chord4,R.id.chord5,
                     R.id.chord6,R.id.chord7,R.id.chord8));
     public int numOfBars = 7; //7 because we start from 0
     public int currentTempo = DEFAULT_TEMPO;
 
-    public ArrayList<Chord> chords = new ArrayList<>();
+    public SparseArray<Chord> chords = new SparseArray<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_music);
         setSpinnerSynth();
+        setStylesSpinner();
 
-        setDefaultChords();
     }
 
     @Override
@@ -65,14 +66,15 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
     public void onPlay (View view) {
         Log.e("Button", "Pressed");
 
-        Pattern pattern = new Pattern();
-        pattern.add("I[flute] Gq");
 
+        SimpleStyle simpleStyle = new SimpleStyle(chords, currentTempo);
+        simpleStyle.setSimpleRhythm();
+        simpleStyle.setFinalPattern();
+
+        Pattern pattern = simpleStyle.getFinalPattern();
         Sequence s = new MediaMidiPlayer().getSequence(pattern);
 
-//        Sequence s = new MediaMidiPlayer().getSequence(new Pattern(
-//                new ChordProgression("I IV vi V").eachChordAs("$_i $_i $_i $_i"),
-//                new Rhythm().addLayer("..XOOOX...X...XO")));
+        Log.e("Pattern", pattern + "");
 
         new MediaMidiPlayer().play(s);
 
@@ -91,6 +93,7 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
             Log.e("id removed", "" + remID);
 //            Log.e("arraylist", ""+button_ids.get(numOfBars));
             chords.remove(numOfBars);
+            remButton.setText("");
             numOfBars--;
             TextView textBar = findViewById(R.id.numBars);
             textBar.setText(""+(numOfBars+1));
@@ -100,18 +103,6 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
         else{
             Toast.makeText(this, "Can't remove any more bars", Toast.LENGTH_SHORT).show();
         }
-    }
-
-    public void setDefaultChords(){
-        //TODO
-        Chord defaultChord = new Chord("CMaj");
-        for(int i = 0; i<=numOfBars; i++){
-            chords.add(defaultChord);
-            Button b = findViewById(button_ids.get(i));
-            b.setText("CMaj");
-        }
-
-        Log.e("defaultChords", chords.toString());
     }
 
     public void incrementBar(View view){
@@ -155,8 +146,6 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
     }
 
 
-
-
     private void setSpinnerSynth(){
         Spinner spinnerSynth = findViewById(R.id.spinSynth);
         spinnerSynth.setOnItemSelectedListener(this);
@@ -167,9 +156,6 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
 
     }
 
-    private void setStylesList(){
-        //TODO
-    }
 
     @Override
     protected void onDestroy() {
@@ -224,7 +210,18 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
         });
     }
 
-    private void showChordDialogue(final Button button, int currChord){
+    private void setStylesSpinner(){
+        final String[] styleNames = {"Simple", "Rock"};
+
+        Spinner spinnerStyles = findViewById(R.id.stylesList);
+        spinnerStyles.setOnItemSelectedListener(this);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, styleNames);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerStyles.setAdapter(adapter);
+    }
+
+    private void showChordDialogue(final Button button, final int currChord){
         final String[] chordNames= {"C","C#", "Cb",
                 "D", "D#", "Db",
                 "E", "E#", "Eb",
@@ -261,12 +258,12 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
             public void onClick(View view) {
                 String chord = chordNames[picker_chords.getValue()] + chordTypes[picker_type.getValue()];
                 Chord c = new Chord(chord);
-                //TODO: NOT MEANT TO ADD WE NEED TO REPLACE THE PREVIOUS ONE IF THAT MAKES SENSE?
-                chords.add(c); //TODO THIS LINE IS WRONG PLZ FIX IT
+                chords.put(currChord,c);
                 button.setText(chord);
                 dialog.dismiss();
 
                 Log.e("chord", chords.toString());
+//                Log.e("chord", chords.get(0).toString());
             }
         });
 
