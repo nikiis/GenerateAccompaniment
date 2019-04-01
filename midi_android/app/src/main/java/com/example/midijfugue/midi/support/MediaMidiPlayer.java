@@ -17,28 +17,8 @@ public class MediaMidiPlayer extends Player {
         });
     }
 
-    public void stopContinuousPlay(){
+    public void stop(){
         getManagedPlayer().finish();
-        isPlaying = false;
-    }
-
-    public void startContinuousPlay(final Pattern pattern){
-        isPlaying = true;
-        runOnAnotherThread(new Runnable(){
-            @Override
-            public void run() {
-                while(isPlaying) {
-                    while(!getManagedPlayer().isFinished() && getManagedPlayer().isStarted()) {
-                        try {
-                            Thread.sleep(10L);
-                        } catch (InterruptedException var3) {
-                            ;
-                        }
-                    }
-                    MediaMidiPlayer.super.play(pattern);
-                }
-            }
-        });
     }
 
     private void runOnAnotherThread(Runnable runnable){

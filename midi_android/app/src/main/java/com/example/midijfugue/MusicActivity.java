@@ -15,11 +15,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.midijfugue.midi.support.MediaMidiPlayer;
 import com.example.midijfugue.midi.support.MediaMidiSystem;
 import com.example.midijfugue.styles.BaseStyle;
 import com.example.midijfugue.styles.StyleFactory;
 
+import org.jfugue.player.Player;
 import org.jfugue.theory.Chord;
 
 import java.util.ArrayList;
@@ -36,8 +36,6 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
     MediaMidiSystem mediaMidiSystem;
     ArrayList<Integer> buttonIds = new ArrayList<>(Arrays.asList(R.id.chord1, R.id.chord2,
             R.id.chord3, R.id.chord4, R.id.chord5, R.id.chord6, R.id.chord7, R.id.chord8));
-
-    MediaMidiPlayer mediaMidiPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,10 +72,7 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
         stopButton.setVisibility(View.VISIBLE);
 
         BaseStyle style = StyleFactory.createStyle(styleSetup);
-        style.play();
-        // TODO this needs to be properly implemented
-//        mediaMidiPlayer = new MediaMidiPlayer();
-//        mediaMidiPlayer.startContinuousPlay(style.buildPlayable());
+        style.play(100);
     }
 
     public void onClickStop(View view){
@@ -87,10 +82,7 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
         playButton.setVisibility(View.VISIBLE);
         stopButton.setVisibility(View.INVISIBLE);
 
-        new MediaMidiPlayer().getManagedPlayer().finish();
-
-        // TODO need to uncomment this when behavior  is implemented
-//        mediaMidiPlayer.stopContinuousPlay();
+        new Player().getManagedPlayer().finish();
     }
 
     public void setChord(View view){

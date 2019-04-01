@@ -12,29 +12,31 @@ public abstract class BaseStyle {
         this.styleSetup = styleSetup;
     }
 
-    public abstract Pattern createChordPattern();
-    public abstract Pattern createNotePattern();
 
-    public Pattern buildPlayable() {
+    public Pattern buildPlayable(int repeatCount) {
         Pattern playable = new Pattern();
         playable.add(
                 createNotePattern(),
-                createChordPattern(),
-                createRhythmPattern());
+                createChordPattern()).repeat(repeatCount);
+
+        playable.add(createRhythmPattern().repeat(repeatCount / 2 * styleSetup.getNumberOfBars()));
 
         playable.setTempo(styleSetup.getTempo());
+
         return playable;
     }
 
-    public void play(){
+    public void play(int repeatCount){
         MediaMidiPlayer player = new MediaMidiPlayer();
-        player.play(buildPlayable());
+        player.play(buildPlayable(repeatCount));
     }
 
+    public void play(Pattern playable){
+        MediaMidiPlayer player = new MediaMidiPlayer();
+        player.play(playable);
+    }
 
-    /**
-     *  This needs to be reimplemented with every style.
-     * @return
-     */
+    public abstract Pattern createChordPattern();
     public abstract Pattern createRhythmPattern();
+    public abstract Pattern createNotePattern();
 }
