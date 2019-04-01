@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:layout_centerHorizontal="true">
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="321dp"
+        android:layout_height="450dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="10dp"
+            android:text="@string/miditut"
+            android:textAlignment="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:text="@string/miditut2"
+            android:textAlignment="center" />
+
+        <ImageView
+            android:layout_width="326dp"
+            android:layout_height="59dp"
+            android:layout_margin="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/miditut" />
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go Back"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout4"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout4"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout4"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout4"
+        app:layout_constraintVertical_bias="0.947"
+        android:background="@drawable/mybutton"
+        android:textColor="#ffffff"
+        android:onClick="goBack"
+        android:id="@+id/goBack"/>
+
+</android.support.constraint.ConstraintLayout>

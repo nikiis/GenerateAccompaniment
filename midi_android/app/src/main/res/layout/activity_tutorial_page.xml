@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TutorialPage"
+    android:background="@drawable/tutorialpage"
+    android:layout_gravity="center">
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="346dp"
+        android:layout_height="575dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.835">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:paddingTop="70dp"
+            android:layout_marginRight="10dp"
+            android:text="Click on the section you want to know more about to view it's tutorial!"
+            android:textAlignment="center"
+
+            android:textSize="18sp" />
+
+
+        <Button
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/mybutton"
+            android:backgroundTint="#4195F0"
+            android:text="1. Selecting MIDI Device"
+            android:onClick="viewMIDITutorial"/>
+
+        <Button
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/mybutton"
+            android:backgroundTint="#4195F0"
+            android:text="2. Adding chords"
+            android:onClick="viewAddChordTutorial"/>
+
+        <Button
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/mybutton"
+            android:backgroundTint="#4195F0"
+            android:text="3. Choosing Style"
+            android:onClick="viewChooseStyleTutorial"/>
+
+        <Button
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/mybutton"
+            android:backgroundTint="#4195F0"
+            android:text="4. Adjusting the Tempo"
+            android:onClick="viewAdjustTempoTutorial"/>
+
+        <Button
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/mybutton"
+            android:backgroundTint="#4195F0"
+            android:text="5. Playing the Music"
+            android:onClick="viewPlayMusicTutorial"/>
+
+
+    </LinearLayout>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/mybutton"
+        android:backgroundTint="#ffffff"
+        android:text="Go Back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout3"
+        app:layout_constraintVertical_bias="0.87"
+        android:onClick="goBackHome"/>
+
+</android.support.constraint.ConstraintLayout>

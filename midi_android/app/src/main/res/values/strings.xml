@@ -6,4 +6,11 @@
     <string name="sharp">\U266F</string>
     <string name="chord1">chord1</string>
     <string name="bar_no">8</string>
+    <string name="miditut">Before you are able to play any music, make sure you have installed
+    a Synthesizer application. Some recommended applications that are available on Google Play Store are:
+    FluidSynth and OPL3. These will provide this application with Sound Fonts which is what creates
+    the musical sounds. </string>
+    <string name="miditut2">To choose your chosen Synthesizer, simply click on the area circled
+    in red as shown below. This will expand the list of synthesizers that you have installed.
+    Choose the one you want and the app will automatically connect to it! </string>
 </resources>

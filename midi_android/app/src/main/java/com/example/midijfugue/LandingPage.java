@@ -19,7 +19,8 @@ public class LandingPage extends AppCompatActivity {
     }
 
     public void toTutorialActivity(View view){
-
+        Intent intent = new Intent(this, TutorialPage.class);
+        startActivity(intent);
     }
 
     public void toAboutActivity(View view){
