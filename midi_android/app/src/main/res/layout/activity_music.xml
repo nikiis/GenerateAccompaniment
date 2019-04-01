@@ -15,7 +15,7 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
-        android:layout_height="456dp"
+        android:layout_height="474dp"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -87,8 +87,8 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="incrementBar"
-                android:background="@drawable/plus" />
+                android:background="@drawable/plus"
+                android:onClick="incrementBar" />
 
         </LinearLayout>
 
@@ -202,6 +202,59 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:paddingTop="3dp">
+
+            <Button
+                android:id="@+id/chord9"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_marginEnd="2dp"
+                android:background="@drawable/mybutton"
+                android:onClick="setChord"
+                android:text="+"
+                android:textColor="#ffffff" />
+
+            <Button
+                android:id="@+id/chord10"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_marginEnd="2dp"
+                android:background="@drawable/mybutton"
+                android:onClick="setChord"
+                android:text="+"
+                android:textColor="#ffffff" />
+
+            <Button
+                android:id="@+id/chord11"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_marginEnd="2dp"
+                android:background="@drawable/mybutton"
+                android:onClick="setChord"
+                android:text="+"
+                android:textColor="#ffffff" />
+
+            <Button
+                android:id="@+id/chord12"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:background="@drawable/mybutton"
+                android:onClick="setChord"
+                android:text="+"
+                android:textColor="#ffffff" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:orientation="horizontal">
 
@@ -246,25 +299,25 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="decrementTempo"
+                android:layout_marginLeft="10dp"
                 android:background="@drawable/decrease"
-                android:layout_marginLeft="10dp"/>
+                android:onClick="decrementTempo" />
 
             <TextView
                 android:id="@+id/tempo_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:text="120"
                 android:textAlignment="center"
-                android:textSize="18sp"
-                android:layout_marginRight="5dp"
-                android:layout_marginLeft="5dp"/>
+                android:textSize="18sp" />
 
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="incrementTempo"
-                android:background="@drawable/plus"/>
+                android:background="@drawable/plus"
+                android:onClick="incrementTempo" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -321,7 +374,8 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.747"
         android:id="@+id/play_button"
-        android:onClick="onPlay"/>
+        android:onClick="onPlay"
+        android:backgroundTint="#ffffff"/>
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -338,5 +392,6 @@
         app:layout_constraintVertical_bias="0.616"
         android:visibility="invisible"
         android:onClick="onClickStop"
-        android:id="@+id/stop_button"/>
+        android:id="@+id/stop_button"
+        android:backgroundTint="#ffffff"/>
 </android.support.constraint.ConstraintLayout>

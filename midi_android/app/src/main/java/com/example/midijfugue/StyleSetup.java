@@ -23,11 +23,11 @@ public class StyleSetup {
 
     private final int MAX_TEMPO = 200;
     private final int MIN_TEMPO = 60;
-    private final int MAX_BARS = 8;
+    private final int MAX_BARS = 12;
     private final int MIN_BARS = 1;
 
     private final int DEFAULT_TEMPO = 120;
-    private final int DEFAULT_BARS = 8;
+    private final int DEFAULT_BARS = 12;
     private final String DEFAULT_KEY = KEYS[0];
     private final String DEFAULT_STYLE = STYLES[0];
 

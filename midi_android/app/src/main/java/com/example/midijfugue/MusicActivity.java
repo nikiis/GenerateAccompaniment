@@ -35,7 +35,8 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
 
     MediaMidiSystem mediaMidiSystem;
     ArrayList<Integer> buttonIds = new ArrayList<>(Arrays.asList(R.id.chord1, R.id.chord2,
-            R.id.chord3, R.id.chord4, R.id.chord5, R.id.chord6, R.id.chord7, R.id.chord8));
+            R.id.chord3, R.id.chord4, R.id.chord5, R.id.chord6, R.id.chord7, R.id.chord8,
+            R.id.chord9, R.id.chord10, R.id.chord11, R.id.chord12));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
