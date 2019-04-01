@@ -15,6 +15,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.midijfugue.midi.support.MediaMidiPlayer;
+import com.example.midijfugue.midi.support.MediaMidiSystem;
+import com.example.midijfugue.styles.BaseStyle;
+import com.example.midijfugue.styles.StyleFactory;
+
 import org.jfugue.theory.Chord;
 
 import java.util.ArrayList;
@@ -29,9 +34,10 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
     private ArrayAdapter<String> spinnerSynthAdapter;
 
     MediaMidiSystem mediaMidiSystem;
-    ArrayList<Integer> buttonIds = new ArrayList<>(
-            Arrays.asList(R.id.chord1,R.id.chord2,R.id.chord3,R.id.chord4,R.id.chord5,
-                    R.id.chord6,R.id.chord7,R.id.chord8));
+    ArrayList<Integer> buttonIds = new ArrayList<>(Arrays.asList(R.id.chord1, R.id.chord2,
+            R.id.chord3, R.id.chord4, R.id.chord5, R.id.chord6, R.id.chord7, R.id.chord8));
+
+    MediaMidiPlayer mediaMidiPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +58,13 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
     }
 
     public void onPlay (View view) {
+        if (!styleSetup.isSetupCorrect()){
+            Toast.makeText(this, "Still missing some chords", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         Log.e("Button", "Pressed");
-        Log.i("style name", styleSetup.getStyle().name());
+        Log.i("style name", styleSetup.getStyle());
         Log.i("tempo", styleSetup.getTempo() + "");
         Log.i("bars", styleSetup.getNumberOfBars() + "");
         ImageButton playButton = findViewById(R.id.play_button);
@@ -64,6 +75,9 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
 
         BaseStyle style = StyleFactory.createStyle(styleSetup);
         style.play();
+        // TODO this needs to be properly implemented
+//        mediaMidiPlayer = new MediaMidiPlayer();
+//        mediaMidiPlayer.startContinuousPlay(style.buildPlayable());
     }
 
     public void onClickStop(View view){
@@ -72,6 +86,11 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
 
         playButton.setVisibility(View.VISIBLE);
         stopButton.setVisibility(View.INVISIBLE);
+
+        new MediaMidiPlayer().getManagedPlayer().finish();
+
+        // TODO need to uncomment this when behavior  is implemented
+//        mediaMidiPlayer.stopContinuousPlay();
     }
 
     public void setChord(View view){
@@ -157,7 +176,7 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
                 }
                 break;
             case R.id.styles_spinner:
-                styleSetup.setStyle(StyleSetup.SupportedStyles.values()[i]);
+                styleSetup.setStyle(StyleSetup.STYLES[i]);
                 break;
         }
 

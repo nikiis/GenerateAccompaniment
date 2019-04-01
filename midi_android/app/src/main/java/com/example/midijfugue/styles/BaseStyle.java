@@ -1,4 +1,7 @@
-package com.example.midijfugue;
+package com.example.midijfugue.styles;
+
+import com.example.midijfugue.StyleSetup;
+import com.example.midijfugue.midi.support.MediaMidiPlayer;
 
 import org.jfugue.pattern.Pattern;
 
@@ -12,12 +15,12 @@ public abstract class BaseStyle {
     public abstract Pattern createChordPattern();
     public abstract Pattern createNotePattern();
 
-    private Pattern buildPlayable() {
+    public Pattern buildPlayable() {
         Pattern playable = new Pattern();
         playable.add(
                 createNotePattern(),
                 createChordPattern(),
-                createRhythmPattern().repeat(styleSetup.getNumberOfBars() % 2 + 2));
+                createRhythmPattern());
 
         playable.setTempo(styleSetup.getTempo());
         return playable;

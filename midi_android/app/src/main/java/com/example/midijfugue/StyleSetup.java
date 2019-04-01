@@ -10,7 +10,8 @@ import java.util.Locale;
 
 public class StyleSetup {
 
-    public final static String[] KEYS = {"C", "C#", "Cb",
+    public final static String[] KEYS = {
+            "C", "C#", "Cb",
             "G", "G#", "Gb",
             "A", "A#", "Ab",
             "D", "D#", "Db",
@@ -20,11 +21,6 @@ public class StyleSetup {
 
     public final static String[] STYLES = {"Simple", "Rock"};
 
-    public enum SupportedStyles {
-        SIMPLE,
-        ROCK
-    }
-
     private final int MAX_TEMPO = 200;
     private final int MIN_TEMPO = 60;
     private final int MAX_BARS = 8;
@@ -33,10 +29,10 @@ public class StyleSetup {
     private final int DEFAULT_TEMPO = 120;
     private final int DEFAULT_BARS = 8;
     private final String DEFAULT_KEY = KEYS[0];
-    private final SupportedStyles DEFAULT_STYLE = SupportedStyles.SIMPLE;
+    private final String DEFAULT_STYLE = STYLES[0];
 
     private int numberOfBars;
-    private SupportedStyles style;
+    private String style;
     private int tempo;
     private String key;
     private SparseArray<Chord> chords;
@@ -50,11 +46,11 @@ public class StyleSetup {
     }
 
     public boolean isSetupCorrect(){
-        if (chords.size() < numberOfBars){
-            return false;
+        for (int i = 0; i < this.numberOfBars; i++){
+            if (chords.get(i) == null) return false;
         }
 
-        return false;
+        return true;
     }
 
     public boolean incrementTempo(){
@@ -83,7 +79,6 @@ public class StyleSetup {
 
     public boolean decrementBars(){
         if (numberOfBars > MIN_BARS){
-            // TODO this might throw exception if value doesn't exist, need to test it.
             chords.remove(numberOfBars - 1);
             numberOfBars--;
             return true;
@@ -118,11 +113,11 @@ public class StyleSetup {
         return chordsList;
     }
 
-    public SupportedStyles getStyle() {
+    public String getStyle() {
         return style;
     }
 
-    public void setStyle(SupportedStyles style) {
+    public void setStyle(String style) {
         this.style = style;
     }
 

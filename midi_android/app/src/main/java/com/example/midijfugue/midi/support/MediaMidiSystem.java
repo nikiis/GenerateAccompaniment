@@ -1,4 +1,4 @@
-package com.example.midijfugue;
+package com.example.midijfugue.midi.support;
 
 import android.content.Context;
 import android.media.midi.MidiDevice;

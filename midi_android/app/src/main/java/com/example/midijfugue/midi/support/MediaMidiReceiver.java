@@ -1,4 +1,4 @@
-package com.example.midijfugue;
+package com.example.midijfugue.midi.support;
 import android.media.midi.MidiInputPort;
 import android.support.annotation.NonNull;
 import android.util.Log;

@@ -1,4 +1,4 @@
-package com.example.midijfugue;
+package com.example.midijfugue.midi.support;
 
 import android.media.midi.MidiDevice;
 import android.media.midi.MidiDeviceInfo;
@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import jp.kshoji.javax.sound.midi.MidiUnavailableException;
 import jp.kshoji.javax.sound.midi.Receiver;
 import jp.kshoji.javax.sound.midi.Transmitter;
 

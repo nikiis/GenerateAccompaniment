@@ -1,13 +1,15 @@
-package com.example.midijfugue;
+package com.example.midijfugue.styles;
+
+import com.example.midijfugue.StyleSetup;
 
 import org.jfugue.pattern.Pattern;
 import org.jfugue.rhythm.Rhythm;
 import org.jfugue.theory.Chord;
 
-public class RockStyle extends BaseStyle {
+public class SimpleStyle extends BaseStyle{
     private StyleSetup styleSetup;
 
-    public RockStyle(StyleSetup styleSetup) {
+    public SimpleStyle(StyleSetup styleSetup) {
         super(styleSetup);
         this.styleSetup = styleSetup;
     }
@@ -15,7 +17,7 @@ public class RockStyle extends BaseStyle {
     public Pattern createChordPattern(){
         Pattern chordPattern = new Pattern();
 
-        chordPattern.add("V0 I[ELECTRIC_CLEAN_GUITAR]");
+        chordPattern.add("V0");
 
         for (Chord c: this.styleSetup.getChords()){
             String chord = String.format("%sw", c);
@@ -28,12 +30,11 @@ public class RockStyle extends BaseStyle {
     public Pattern createNotePattern(){
         Pattern notePattern = new Pattern();
 
-        notePattern.add("V1 I[ELECTRIC_PIANO]");
+        notePattern.add("V1");
 
         for (Chord c: styleSetup.getChords()){
-            notePattern.add("rh");
-            notePattern.add(c.getRoot());
-            notePattern.add(c.getRoot());
+            notePattern.add("rq");
+            notePattern.add(c.getNotes());
         }
 
         return notePattern;
@@ -42,9 +43,8 @@ public class RockStyle extends BaseStyle {
     public Pattern createRhythmPattern() {
         Rhythm rhythm = new Rhythm();
         rhythm.addLayer("O..oO...O..oOO..")
-                .addLayer("..S...S...S...S.")
-                .addLayer("````````````````")
-                .addLayer("...............+");
+                .addLayer("````````````````");
         return rhythm.getPattern();
     }
 }
+
