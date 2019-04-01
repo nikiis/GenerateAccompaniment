@@ -11,6 +11,23 @@
     android:layout_centerHorizontal="true"
     android:background="@drawable/mainpage_background">
 
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="38dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/backbutton"
+        android:onClick="goBackToHome"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.195" />
+
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -80,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:text="8"
+                android:text="12"
                 android:textAlignment="center"
                 android:textSize="18sp" />
 
@@ -327,13 +344,15 @@
                 android:paddingRight="5dp"
                 android:text="Select key:"
                 android:textAllCaps="true"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:visibility="invisible"/>
 
             <Spinner
                 android:id="@+id/keysList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:visibility="invisible">
 
             </Spinner>
 

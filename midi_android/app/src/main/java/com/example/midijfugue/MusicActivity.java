@@ -1,6 +1,7 @@
 package com.example.midijfugue;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.media.midi.MidiDeviceInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -86,6 +87,12 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
         new Player().getManagedPlayer().finish();
     }
 
+    public void goBackToHome(View view){
+        Intent intent = new Intent(this, LandingPage.class);
+
+        startActivity(intent);
+    }
+
     public void setChord(View view){
         int currChord = buttonIds.indexOf(view.getId());
         showChordDialogue((Button) view, currChord);
@@ -108,7 +115,7 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
 
     public void incrementBar(View view){
         if(!styleSetup.incrementBars()){
-            Toast.makeText(this, "Up to 8 bars supported only", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Up to 12 bars supported only", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -230,6 +237,8 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
         final String[] chordTypes = {"Maj", "Min", "Maj7", "Min7", "Dom7",
                 "Dim", "Aug", "sus2", "sus4"};
 
+        final String[] inversions = {"root", "1st inversion", "2nd inversion"};
+
         AlertDialog.Builder builder = new AlertDialog.Builder(MusicActivity.this);
         View view = getLayoutInflater().inflate(R.layout.view_chords, null);
 
@@ -249,12 +258,36 @@ public class MusicActivity extends AppCompatActivity implements AdapterView.OnIt
         picker_type.setMaxValue(chordTypes.length - 1);
         picker_type.setDisplayedValues(chordTypes);
 
+        final NumberPicker picker_inversion = dialog.findViewById(R.id.numpick_inversion);
+        picker_inversion.setMinValue(0);
+        picker_inversion.setMaxValue(inversions.length - 1);
+        picker_inversion.setDisplayedValues(inversions);
+
         Button enterChord = dialog.findViewById(R.id.button_chords);
 
         enterChord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String chord = chordNames[picker_chords.getValue()] + chordTypes[picker_type.getValue()];
+
+                String inversionType = "";
+
+                switch(inversions[picker_inversion.getValue()]){
+                    case "root":
+                        Log.e("inverstion type: ", inversionType);
+                        break;
+                    case "1st inversion":
+                        inversionType = "^";
+                        Log.e("inverstion type: ", inversionType);
+                        break;
+                    case "2nd inversion":
+                        inversionType = "^^";
+                        Log.e("inverstion type: ", inversionType);
+
+                        break;
+                }
+
+                String chord = chordNames[picker_chords.getValue()] + chordTypes[picker_type.getValue()] + inversionType;
+                Log.e("chord", chord);
                 Chord c = new Chord(chord);
                 styleSetup.setChord(currChord, c);
                 button.setText(chord);

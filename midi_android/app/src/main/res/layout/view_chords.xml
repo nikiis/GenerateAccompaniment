@@ -38,6 +38,16 @@
             android:layout_marginTop="40dp"
             android:orientation="vertical" />
 
+        <NumberPicker
+            android:id="@+id/numpick_inversion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="40dp"
+            android:orientation="vertical"/>
+
+
     </LinearLayout>
 
     <Button
